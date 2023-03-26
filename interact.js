@@ -15,7 +15,10 @@ async function addStudent(name, age, branch) {
 
 async function getStudent(id) {
     let r = await contract.methods.getStudent(id).call();
-    return r[1];
+    let s1 = r[1];
+    let s2 = r[2];
+    let s3 = r[3];
+    return s1 + " " + s2 + " " + s3;
 }
 
 // addStudent();
@@ -30,13 +33,15 @@ window.addEventListener('load', () => {
     _age = document.getElementById("age").value
     _branch = document.getElementById("branch").value
     addStudent(_name, _age, _branch).then((r) => {
-      document.getElementById("resultOfSet").innerHTML = r
+      document.getElementById("resultOfSet").innerHTML = r;
     })
   }
   document.getElementById("get").onclick = () => {
     val = document.getElementById("value").value
     getStudent(val).then((r) => {
-      document.getElementById("resultOfGet").innerHTML = r
+      const element = document.getElementById("resultOfGet");
+      element.innerHTML = r;
+      element.style.backgroundColor = "moccasin";
     })
   }
 })
